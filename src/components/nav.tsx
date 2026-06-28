@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Seal } from "./seal";
+import { RhinoMark } from "./rhino";
 
 const links = [
   { href: "#how", label: "How it works" },
@@ -13,7 +13,7 @@ export function Nav() {
     <header className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-xl">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <Link href="/" className="flex items-center gap-2.5">
-          <Seal className="h-7 w-7" />
+          <RhinoMark className="h-8 w-8" />
           <span className="text-[15px] font-semibold tracking-tight">
             Rhinogent
           </span>

@@ -13,9 +13,19 @@
   --muted: #9aa0ad;
   --muted-2: #6b7180;
 
+  /* horn — the gold signet */
   --gold: #e8c477;
   --gold-soft: #f3dca6;
   --emerald: #5fd0a0;
+
+  /* rhino hide — steel/gunmetal */
+  --hide: #3a4150;
+  --hide-light: #565f72;
+  --hide-dark: #232934;
+
+  /* android — cyber circuitry glow */
+  --cyber: #57e3ff;
+  --cyber-dim: rgba(87, 227, 255, 0.14);
 }
 
 @theme inline {
@@ -29,6 +39,10 @@
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-emerald: var(--emerald);
+  --color-hide: var(--hide);
+  --color-hide-light: var(--hide-light);
+  --color-hide-dark: var(--hide-dark);
+  --color-cyber: var(--cyber);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -44,12 +58,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ambient radial glow behind hero */
+/* ambient radial glow behind hero — gold horn + cyber circuitry */
 .bg-aura {
   background:
     radial-gradient(60rem 40rem at 50% -12%, rgba(232, 196, 119, 0.10), transparent 60%),
-    radial-gradient(40rem 30rem at 88% 8%, rgba(95, 208, 160, 0.05), transparent 55%);
+    radial-gradient(44rem 32rem at 85% 6%, rgba(87, 227, 255, 0.07), transparent 55%);
 }
+
+@keyframes pulse-node {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.pulse-node { animation: pulse-node 2.4s ease-in-out infinite; }
+.pulse-node-2 { animation: pulse-node 2.4s ease-in-out 0.8s infinite; }
+.pulse-node-3 { animation: pulse-node 2.4s ease-in-out 1.6s infinite; }
 
 .grid-fade {
   background-image:

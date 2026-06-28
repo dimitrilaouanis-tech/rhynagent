@@ -1,4 +1,4 @@
-import { Seal } from "./seal";
+import { RhinoMark } from "./rhino";
 
 export function Footer() {
   return (
@@ -7,7 +7,7 @@ export function Footer() {
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="max-w-xs">
             <div className="flex items-center gap-2.5">
-              <Seal className="h-6 w-6" />
+              <RhinoMark className="h-7 w-7" />
               <span className="font-semibold tracking-tight">Rhinogent</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-muted">

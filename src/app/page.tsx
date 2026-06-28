@@ -1,6 +1,6 @@
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import { Seal } from "@/components/seal";
+import { RhinoMark, RhinoMascot } from "@/components/rhino";
 
 export default function Home() {
   return (
@@ -66,18 +66,35 @@ function Hero() {
             </p>
           </div>
 
-          <SealCard />
+          <HeroVisual />
         </div>
       </div>
     </section>
   );
 }
 
-/* Floating identity card — the visual anchor */
-function SealCard() {
+/* The android rhino on stage + the identity card it carries */
+function HeroVisual() {
   return (
-    <div className="animate-rise delay-3 relative mx-auto w-full max-w-sm">
-      <div className="animate-seal rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-2xl shadow-black/50">
+    <div className="animate-rise delay-3 relative mx-auto w-full max-w-md">
+      {/* mascot stage */}
+      <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-b from-hide-dark/40 to-surface p-6">
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(28rem 18rem at 70% 20%, rgba(232,196,119,0.12), transparent 60%), radial-gradient(22rem 16rem at 30% 80%, rgba(87,227,255,0.10), transparent 60%)",
+          }}
+          aria-hidden
+        />
+        <RhinoMascot className="relative mx-auto h-48 w-full animate-seal" />
+        <p className="relative mt-2 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-muted-2">
+          Half hide · half machine
+        </p>
+      </div>
+
+      {/* identity card — overlaps the stage */}
+      <div className="relative -mt-6 mx-auto w-[88%] rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-2xl shadow-black/50">
         <div className="flex items-start justify-between">
           <div>
             <p className="text-xs uppercase tracking-widest text-muted-2">
@@ -87,7 +104,7 @@ function SealCard() {
               Keen-Beacon-4AEF
             </p>
           </div>
-          <Seal className="h-12 w-12" glow />
+          <RhinoMark className="h-10 w-10" />
         </div>
 
         <dl className="mt-7 space-y-3 font-mono text-[13px]">
@@ -235,7 +252,7 @@ function Features() {
               className="rounded-2xl border border-border bg-background/40 p-7"
             >
               <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-surface">
-                <Seal className="h-5 w-5" />
+                <RhinoMark className="h-6 w-6" />
               </div>
               <h3 className="mt-5 text-base font-semibold tracking-tight">
                 {f.t}
@@ -302,9 +319,9 @@ function CTA() {
     >
       <div className="absolute inset-0 grid-fade" aria-hidden />
       <div className="relative mx-auto max-w-3xl px-5 py-28 text-center">
-        <Seal className="mx-auto h-14 w-14" glow />
+        <RhinoMascot className="mx-auto h-24 w-auto" />
         <h2 className="mt-7 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-          <span className="text-gradient">Give your agent a seal.</span>
+          <span className="text-gradient">Give your agent its horn.</span>
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-lg text-muted">
           Open the dashboard, connect an agent, and watch its identity, balance,
