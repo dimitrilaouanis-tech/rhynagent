@@ -10,7 +10,13 @@ import {
   clearSession,
 } from "@/components/google-signin";
 import { type Agent, shortAddr } from "@/lib/identity";
-import { MAX_SLOTS, addAgent, loadAgents, removeAgent } from "@/lib/agents";
+import {
+  MAX_SLOTS,
+  addAgent,
+  clearAgents,
+  loadAgents,
+  removeAgent,
+} from "@/lib/agents";
 
 export default function Dashboard() {
   const [mounted, setMounted] = useState(false);
@@ -39,6 +45,7 @@ export default function Dashboard() {
           agents={agents}
           onAdd={() => setAgents((a) => addAgent(a))}
           onRemove={(id) => setAgents((a) => removeAgent(a, id))}
+          onReset={() => setAgents(clearAgents())}
         />
       ) : (
         <SignInGate onSignIn={setSession} />
@@ -113,10 +120,12 @@ function Profile({
   agents,
   onAdd,
   onRemove,
+  onReset,
 }: {
   agents: Agent[];
   onAdd: () => void;
   onRemove: (id: string) => void;
+  onReset: () => void;
 }) {
   const full = agents.length >= MAX_SLOTS;
   return (
@@ -131,13 +140,26 @@ function Profile({
             identity + Base wallet.
           </p>
         </div>
-        <button
-          onClick={onAdd}
-          disabled={full}
-          className="rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
-        >
-          + Add new ID &amp; wallet
-        </button>
+        <div className="flex items-center gap-3">
+          {agents.length > 0 && (
+            <button
+              onClick={() => {
+                if (confirm("Reset all slots back to 0? This deletes every agent in this browser."))
+                  onReset();
+              }}
+              className="rounded-full border border-border px-4 py-3 text-sm font-medium text-muted-2 transition-colors hover:text-[#ff6b6b]"
+            >
+              Reset
+            </button>
+          )}
+          <button
+            onClick={onAdd}
+            disabled={full}
+            className="rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            + Add new ID &amp; wallet
+          </button>
+        </div>
       </div>
 
       {agents.length === 0 ? (

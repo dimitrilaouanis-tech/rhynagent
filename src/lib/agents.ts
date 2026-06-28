@@ -36,3 +36,9 @@ export function renameAgent(agents: Agent[], id: string, label: string): Agent[]
   save(next);
   return next;
 }
+
+/** Wipe all slots back to 0. */
+export function clearAgents(): Agent[] {
+  if (typeof window !== "undefined") window.localStorage.removeItem(KEY);
+  return [];
+}
