@@ -33,7 +33,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-border/60 pt-6 text-xs text-muted-2 sm:flex-row sm:items-center sm:justify-between">
-          <span>© {2026} Rhinogent · Powered by 0n1x</span>
+          <span>© {2026} Rhinogent</span>
           <span className="font-mono">
             Self-custody · Ed25519 · Base · x402
           </span>

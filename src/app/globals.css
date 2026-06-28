@@ -2,7 +2,7 @@
 
 /* ─────────────────────────────────────────────
    Rhinogent — design tokens (powered by 0n1x)
-   Onyx-black canvas, signet-gold seal, cool steel grays.
+   0n1x-black canvas, gold horn, steel rhino-hide, cyber circuitry.
    ───────────────────────────────────────────── */
 :root {
   --background: #07070a;
@@ -63,6 +63,31 @@ body {
   background:
     radial-gradient(60rem 40rem at 50% -12%, rgba(232, 196, 119, 0.10), transparent 60%),
     radial-gradient(44rem 32rem at 85% 6%, rgba(87, 227, 255, 0.07), transparent 55%);
+}
+
+/* Stripe-style angled gradient mesh — gold → cyber → violet on black */
+.bg-mesh {
+  background:
+    radial-gradient(50rem 30rem at 15% -10%, rgba(232, 196, 119, 0.16), transparent 55%),
+    radial-gradient(46rem 30rem at 85% 0%, rgba(87, 227, 255, 0.13), transparent 55%),
+    radial-gradient(60rem 40rem at 60% 30%, rgba(139, 92, 246, 0.08), transparent 60%);
+}
+
+/* thin top hairline gradient (Stripe nav accent) */
+.hairline {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--gold) 35%,
+    var(--cyber) 65%,
+    transparent
+  );
+}
+
+/* Apple-style oversized, tight headline */
+.display {
+  letter-spacing: -0.035em;
+  line-height: 0.98;
 }
 
 @keyframes pulse-node {

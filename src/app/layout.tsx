@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s · Rhinogent",
   },
   description:
-    "Self-custody identity and wallets for AI agents. Every agent gets a cryptographic identity, a Base wallet it alone controls, and signed, verifiable proof of who it is. Powered by 0n1x.",
+    "Self-custody identity and wallets for AI agents. Every agent gets a cryptographic identity, a Base wallet it alone controls, and signed, verifiable proof of who it is.",
   keywords: [
     "AI agent wallet",
     "agent identity",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Rhinogent — the identity wallet for agents",
     description:
-      "Self-custody identity and wallets for AI agents. Powered by 0n1x.",
+      "Self-custody identity and wallets for AI agents.",
     type: "website",
     siteName: "Rhinogent",
   },
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Rhinogent — the identity wallet for agents",
     description:
-      "Self-custody identity and wallets for AI agents. Powered by 0n1x.",
+      "Self-custody identity and wallets for AI agents.",
   },
 };
 
