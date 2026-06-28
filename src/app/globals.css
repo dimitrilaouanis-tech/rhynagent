@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   Signet — design tokens (powered by 0n1x)
+   Onyx-black canvas, signet-gold seal, cool steel grays.
+   ───────────────────────────────────────────── */
+:root {
+  --background: #07070a;
+  --surface: #0d0e13;
+  --surface-2: #14161d;
+  --border: #20232d;
+  --foreground: #f4f5f7;
+  --muted: #9aa0ad;
+  --muted-2: #6b7180;
+
+  --gold: #e8c477;
+  --gold-soft: #f3dca6;
+  --emerald: #5fd0a0;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-emerald: var(--emerald);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ambient radial glow behind hero */
+.bg-aura {
+  background:
+    radial-gradient(60rem 40rem at 50% -12%, rgba(232, 196, 119, 0.10), transparent 60%),
+    radial-gradient(40rem 30rem at 88% 8%, rgba(95, 208, 160, 0.05), transparent 55%);
+}
+
+.grid-fade {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 35%, transparent 78%);
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 35%, transparent 78%);
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #c4c8d2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gold-gradient {
+  background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes float-seal {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
+}
+.animate-seal { animation: float-seal 7s ease-in-out infinite; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise { animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-seal, .animate-rise { animation: none; }
+}
