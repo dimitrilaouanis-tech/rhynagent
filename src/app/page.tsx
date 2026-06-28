@@ -10,6 +10,7 @@ export default function Home() {
         <Hero />
         <Standards />
         <FeatureRows />
+        <HowItWorks />
         <Counterparty />
         <Platforms />
         <Developers />
@@ -45,7 +46,7 @@ function Hero() {
 
         <div className="animate-rise delay-3 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="#get-started"
+            href="/dashboard"
             className="w-full rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90 sm:w-auto"
           >
             Get Rhinogent
@@ -202,6 +203,56 @@ function FeatureRow({
         </div>
       </div>
     </div>
+  );
+}
+
+/* ───────────────────────── How it works (numbered flow) ───────────────────────── */
+function HowItWorks() {
+  const steps = [
+    {
+      n: "01",
+      t: "Mint on contact",
+      d: "One call generates an Ed25519 keypair and a Base wallet inside your agent's runtime. No signup, no sales call — fetch is the signup.",
+    },
+    {
+      n: "02",
+      t: "Get a signed identity",
+      d: "The agent receives a signed identity card binding its key, callsign, and did:pkh — verifiable by anyone, owned only by the agent.",
+    },
+    {
+      n: "03",
+      t: "Set the mandate",
+      d: "Author a signed spend cap and merchant allowlist the agent adopts. It transacts autonomously — within the boundaries you define.",
+    },
+    {
+      n: "04",
+      t: "Transact & verify",
+      d: "The agent pays over x402, verifies the counterparty on the other side, and leaves a signed track record anyone can check.",
+    },
+  ];
+  return (
+    <section id="how" className="mx-auto max-w-6xl px-5 py-24">
+      <div className="text-center">
+        <p className="text-xs uppercase tracking-widest text-gold">
+          How it works
+        </p>
+        <h2 className="display mx-auto mt-4 max-w-2xl text-4xl font-semibold sm:text-5xl">
+          <span className="text-gradient">Live in one call.</span>
+        </h2>
+      </div>
+      <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {steps.map((s) => (
+          <div
+            key={s.n}
+            className="rounded-2xl border border-border bg-surface/40 p-6"
+          >
+            <span className="font-mono text-sm text-gold">{s.n}</span>
+            <h3 className="mt-3 text-lg font-semibold tracking-tight">{s.t}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
@@ -406,7 +457,7 @@ function CTA() {
         </p>
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <a
-            href="#"
+            href="/dashboard"
             className="w-full rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90 sm:w-auto"
           >
             Get Rhinogent
