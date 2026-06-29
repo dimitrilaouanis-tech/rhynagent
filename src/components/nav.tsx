@@ -18,7 +18,7 @@ export function Nav() {
           <Link href="/" className="flex items-center gap-2.5">
             <RhinoMark className="h-8 w-8" />
             <span className="text-[15px] font-semibold tracking-tight">
-              Rhynagent
+              Rhinogent
             </span>
           </Link>
 
@@ -45,7 +45,7 @@ export function Nav() {
               href="/dashboard"
               className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              Get Rhynagent
+              Get Rhinogent
             </Link>
           </div>
         </nav>

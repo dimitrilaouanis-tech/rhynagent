@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
   images: { unoptimized: true },
-  ...(isPages ? { basePath: "/rhynagent", assetPrefix: "/rhynagent" } : {}),
+  ...(isPages ? { basePath: "/rhinogent", assetPrefix: "/rhinogent" } : {}),
   // Pin the workspace root to this project (a sibling lockfile exists in the
   // home dir, which otherwise makes Turbopack infer the wrong root).
   turbopack: {

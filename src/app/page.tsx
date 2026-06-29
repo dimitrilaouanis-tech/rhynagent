@@ -50,7 +50,7 @@ function Hero() {
             href="/dashboard"
             className="w-full rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
           >
-            Get Rhynagent
+            Get Rhinogent
           </Link>
           <a
             href="#developers"
@@ -116,7 +116,7 @@ function FeatureRows() {
           <span className="text-gradient">
             MetaMask gave people self-custody.
           </span>{" "}
-          <span className="text-muted">Rhynagent gives it to agents.</span>
+          <span className="text-muted">Rhinogent gives it to agents.</span>
         </h2>
       </div>
 
@@ -268,7 +268,7 @@ function Counterparty() {
         <h2 className="display mx-auto mt-4 max-w-3xl text-3xl font-semibold sm:text-4xl">
           <span className="text-muted">Everyone secures your agent&apos;s keys.</span>{" "}
           <span className="text-gradient">
-            Rhynagent also tells it who it&apos;s paying.
+            Rhinogent also tells it who it&apos;s paying.
           </span>
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted">
@@ -284,8 +284,8 @@ function Counterparty() {
 /* ───────────────────────── Platforms (MetaMask install targets) ───────────────────────── */
 function Platforms() {
   const targets = [
-    { t: "TypeScript SDK", d: "npm i @0n1x/rhynagent" },
-    { t: "Python SDK", d: "pip install rhynagent" },
+    { t: "TypeScript SDK", d: "npm i @0n1x/rhinogent" },
+    { t: "Python SDK", d: "pip install rhinogent" },
     { t: "Dashboard", d: "Web · oversee every agent" },
     { t: "Gateway", d: "HTTP · x402 + identity handshake" },
   ];
@@ -364,15 +364,15 @@ function CodePanel() {
           <span className="text-muted-2">{`// give your agent an identity`}</span>
           {"\n"}
           <span className="text-accent">import</span>
-          <span className="text-foreground">{" { Rhynagent } "}</span>
+          <span className="text-foreground">{" { Rhinogent } "}</span>
           <span className="text-accent">from</span>
-          <span className="text-emerald">{' "@0n1x/rhynagent"'}</span>
+          <span className="text-emerald">{' "@0n1x/rhinogent"'}</span>
           <span className="text-foreground">;</span>
           {"\n\n"}
           <span className="text-accent">const</span>
           <span className="text-foreground"> agent = </span>
           <span className="text-accent">await</span>
-          <span className="text-foreground"> Rhynagent.</span>
+          <span className="text-foreground"> Rhinogent.</span>
           <span className="text-accent">mint</span>
           <span className="text-foreground">();</span>
           {"\n"}
@@ -388,7 +388,7 @@ function CodePanel() {
           <span className="text-accent">sign</span>
           <span className="text-foreground">(order);</span>
           {"\n"}
-          <span className="text-foreground">Rhynagent.</span>
+          <span className="text-foreground">Rhinogent.</span>
           <span className="text-accent">verify</span>
           <span className="text-foreground">(seal); </span>
           <span className="text-emerald">{`// true`}</span>
@@ -413,7 +413,7 @@ function Security() {
             </span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-muted">
-            Rhynagent is deliberately not a custodian. Because we never hold your
+            Rhinogent is deliberately not a custodian. Because we never hold your
             agent&apos;s keys, there is nothing to seize, hack, or play favorites
             with. Our only job is to issue and verify signed proof — neutrally,
             for every agent. That neutrality is the moat.
@@ -461,7 +461,7 @@ function CTA() {
             href="/dashboard"
             className="w-full rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
           >
-            Get Rhynagent
+            Get Rhinogent
           </Link>
           <a
             href="#docs"
@@ -482,7 +482,7 @@ function IdentityCard() {
       <div className="flex items-start justify-between">
         <div>
           <p className="text-xs uppercase tracking-widest text-muted-2">
-            Rhynagent identity
+            Rhinogent identity
           </p>
           <p className="mt-1 text-lg font-semibold tracking-tight">
             Keen-Beacon-4AEF

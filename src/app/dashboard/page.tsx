@@ -68,7 +68,7 @@ function TopBar({
         <Link href="/" className="flex items-center gap-2.5">
           <RhinoMark className="h-8 w-8" />
           <span className="text-[15px] font-semibold tracking-tight">
-            Rhynagent
+            Rhinogent
           </span>
         </Link>
         {session && (
@@ -265,7 +265,7 @@ function AgentCard({ agent, onRemove }: { agent: Agent; onRemove: () => void }) 
       <div className="flex items-start justify-between">
         <div>
           <p className="text-[11px] uppercase tracking-widest text-muted-2">
-            Rhynagent identity
+            Rhinogent identity
           </p>
           <p className="mt-1 font-semibold tracking-tight">{agent.id}</p>
         </div>

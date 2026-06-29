@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 export type Session = { name: string; email: string; picture?: string };
 
-const KEY = "rhynagent.session.v1";
+const KEY = "rhinogent.session.v1";
 const CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
 
 export function loadSession(): Session | null {
@@ -89,7 +89,7 @@ export function GoogleSignIn({ onSignIn }: { onSignIn: (s: Session) => void }) {
         onClick={() => {
           const s: Session = {
             name: "Demo Owner",
-            email: "demo@rhynagent.xyz",
+            email: "demo@rhinogent.xyz",
           };
           saveSession(s);
           onSignIn(s);
