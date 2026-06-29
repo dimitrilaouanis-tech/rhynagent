@@ -43,7 +43,7 @@ export function Nav() {
             </Link>
             <Link
               href="/dashboard"
-              className="rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+              className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               Get Rhinogent
             </Link>

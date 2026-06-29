@@ -1,31 +1,35 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────
-   Rhinogent — design tokens (powered by 0n1x)
-   0n1x-black canvas, gold horn, steel rhino-hide, cyber circuitry.
+   Rhinogent — design tokens
+   Stripe-style light canvas, indigo accent, gold horn + cyber on the mascot.
    ───────────────────────────────────────────── */
 :root {
-  --background: #07070a;
-  --surface: #0d0e13;
-  --surface-2: #14161d;
-  --border: #20232d;
-  --foreground: #f4f5f7;
-  --muted: #9aa0ad;
-  --muted-2: #6b7180;
+  --background: #ffffff;
+  --surface: #f6f9fc;
+  --surface-2: #eef2f8;
+  --border: #e4e9f0;
+  --foreground: #0a0e27;
+  --muted: #4a5365;
+  --muted-2: #8a93a3;
 
-  /* horn — the gold signet */
-  --gold: #e8c477;
-  --gold-soft: #f3dca6;
-  --emerald: #5fd0a0;
+  /* primary accent — Stripe indigo */
+  --accent: #635bff;
+  --accent-soft: #8b85ff;
 
-  /* rhino hide — steel/gunmetal */
+  /* horn — gold signet (mascot graphic) */
+  --gold: #e0a92e;
+  --gold-soft: #f3cf73;
+  --emerald: #0a9d6e;
+
+  /* rhino hide — steel/gunmetal (mascot graphic) */
   --hide: #3a4150;
   --hide-light: #565f72;
   --hide-dark: #232934;
 
-  /* android — cyber circuitry glow */
-  --cyber: #57e3ff;
-  --cyber-dim: rgba(87, 227, 255, 0.14);
+  /* android — cyber circuitry glow (mascot graphic) */
+  --cyber: #18b8d8;
+  --cyber-dim: rgba(24, 184, 216, 0.12);
 }
 
 @theme inline {
@@ -36,6 +40,8 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-emerald: var(--emerald);
@@ -58,19 +64,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ambient radial glow behind hero — gold horn + cyber circuitry */
+/* ambient glow behind hero — soft indigo + gold on white */
 .bg-aura {
   background:
-    radial-gradient(60rem 40rem at 50% -12%, rgba(232, 196, 119, 0.10), transparent 60%),
-    radial-gradient(44rem 32rem at 85% 6%, rgba(87, 227, 255, 0.07), transparent 55%);
+    radial-gradient(60rem 40rem at 50% -12%, rgba(99, 91, 255, 0.08), transparent 60%),
+    radial-gradient(44rem 32rem at 85% 6%, rgba(224, 169, 46, 0.06), transparent 55%);
 }
 
-/* Stripe-style angled gradient mesh — gold → cyber → violet on black */
+/* Stripe-style angled gradient mesh — indigo → sky → gold, light */
 .bg-mesh {
   background:
-    radial-gradient(50rem 30rem at 15% -10%, rgba(232, 196, 119, 0.16), transparent 55%),
-    radial-gradient(46rem 30rem at 85% 0%, rgba(87, 227, 255, 0.13), transparent 55%),
-    radial-gradient(60rem 40rem at 60% 30%, rgba(139, 92, 246, 0.08), transparent 60%);
+    radial-gradient(50rem 30rem at 12% -10%, rgba(99, 91, 255, 0.12), transparent 55%),
+    radial-gradient(46rem 30rem at 88% 0%, rgba(24, 184, 216, 0.10), transparent 55%),
+    radial-gradient(60rem 40rem at 60% 35%, rgba(224, 169, 46, 0.06), transparent 60%);
 }
 
 /* thin top hairline gradient (Stripe nav accent) */
@@ -78,7 +84,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    var(--gold) 35%,
+    var(--accent) 35%,
     var(--cyber) 65%,
     transparent
   );
@@ -100,20 +106,30 @@ body {
 
 .grid-fade {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(to right, rgba(10, 14, 39, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10, 14, 39, 0.04) 1px, transparent 1px);
   background-size: 44px 44px;
   -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 35%, transparent 78%);
   mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 35%, transparent 78%);
 }
 
+/* ink headline gradient (on light) */
 .text-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #c4c8d2 100%);
+  background: linear-gradient(180deg, #0a0e27 0%, #3a4256 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
+/* indigo accent headline gradient (Stripe) */
+.accent-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, #2bb6e0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* gold gradient kept for the mascot/horn graphic contexts */
 .gold-gradient {
   background: linear-gradient(180deg, var(--gold-soft) 0%, var(--gold) 100%);
   -webkit-background-clip: text;

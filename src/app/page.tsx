@@ -36,7 +36,7 @@ function Hero() {
 
         <h1 className="display animate-rise delay-1 mx-auto mt-7 max-w-4xl text-balance text-6xl font-semibold sm:text-7xl">
           <span className="text-gradient">The identity wallet</span>{" "}
-          <span className="gold-gradient">for agents.</span>
+          <span className="accent-gradient">for agents.</span>
         </h1>
 
         <p className="animate-rise delay-2 mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
@@ -48,7 +48,7 @@ function Hero() {
         <div className="animate-rise delay-3 mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
             href="/dashboard"
-            className="w-full rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90 sm:w-auto"
+            className="w-full rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
           >
             Get Rhinogent
           </Link>
@@ -62,7 +62,7 @@ function Hero() {
 
         {/* product hero — the android rhino + identity card */}
         <div className="animate-rise delay-4 relative mx-auto mt-16 max-w-3xl">
-          <div className="relative overflow-hidden rounded-[28px] border border-border bg-gradient-to-b from-hide-dark/50 to-surface p-8 sm:p-12">
+          <div className="relative overflow-hidden rounded-[28px] border border-border bg-gradient-to-b from-surface-2 to-surface p-8 sm:p-12">
             <div
               className="pointer-events-none absolute inset-0"
               style={{
@@ -109,7 +109,7 @@ function FeatureRows() {
   return (
     <section id="features" className="mx-auto max-w-6xl px-5">
       <div className="py-24 text-center">
-        <p className="text-xs uppercase tracking-widest text-gold">
+        <p className="text-xs uppercase tracking-widest text-accent">
           What every agent gets
         </p>
         <h2 className="display mx-auto mt-4 max-w-3xl text-4xl font-semibold sm:text-5xl">
@@ -174,7 +174,7 @@ function FeatureRow({
   return (
     <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
       <div className={flip ? "lg:order-2" : ""}>
-        <p className="text-xs uppercase tracking-widest text-gold">{eyebrow}</p>
+        <p className="text-xs uppercase tracking-widest text-accent">{eyebrow}</p>
         <h3 className="display mt-3 text-3xl font-semibold sm:text-4xl">
           {title}
         </h3>
@@ -234,7 +234,7 @@ function HowItWorks() {
   return (
     <section id="how" className="mx-auto max-w-6xl px-5 py-24">
       <div className="text-center">
-        <p className="text-xs uppercase tracking-widest text-gold">
+        <p className="text-xs uppercase tracking-widest text-accent">
           How it works
         </p>
         <h2 className="display mx-auto mt-4 max-w-2xl text-4xl font-semibold sm:text-5xl">
@@ -247,7 +247,7 @@ function HowItWorks() {
             key={s.n}
             className="rounded-2xl border border-border bg-surface/40 p-6"
           >
-            <span className="font-mono text-sm text-gold">{s.n}</span>
+            <span className="font-mono text-sm text-accent">{s.n}</span>
             <h3 className="mt-3 text-lg font-semibold tracking-tight">{s.t}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">{s.d}</p>
           </div>
@@ -262,7 +262,7 @@ function Counterparty() {
   return (
     <section className="border-y border-border/60 bg-surface/20">
       <div className="mx-auto max-w-4xl px-5 py-20 text-center">
-        <p className="text-xs uppercase tracking-widest text-cyber">
+        <p className="text-xs uppercase tracking-widest text-accent">
           What no one else does
         </p>
         <h2 className="display mx-auto mt-4 max-w-3xl text-3xl font-semibold sm:text-4xl">
@@ -324,7 +324,7 @@ function Developers() {
     <section id="developers" className="mx-auto max-w-6xl px-5 py-24">
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <p className="text-xs uppercase tracking-widest text-cyber">
+          <p className="text-xs uppercase tracking-widest text-accent">
             For developers
           </p>
           <h2 className="display mt-3 text-4xl font-semibold sm:text-5xl">
@@ -352,7 +352,7 @@ function Developers() {
 
 function CodePanel() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-[#0a0b10] shadow-2xl shadow-black/50">
+    <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-2xl shadow-slate-900/10">
       <div className="flex items-center gap-2 border-b border-border px-4 py-3">
         <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
         <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
@@ -363,33 +363,33 @@ function CodePanel() {
         <code>
           <span className="text-muted-2">{`// give your agent an identity`}</span>
           {"\n"}
-          <span className="text-cyber">import</span>
+          <span className="text-accent">import</span>
           <span className="text-foreground">{" { Rhinogent } "}</span>
-          <span className="text-cyber">from</span>
+          <span className="text-accent">from</span>
           <span className="text-emerald">{' "@0n1x/rhinogent"'}</span>
           <span className="text-foreground">;</span>
           {"\n\n"}
-          <span className="text-cyber">const</span>
+          <span className="text-accent">const</span>
           <span className="text-foreground"> agent = </span>
-          <span className="text-cyber">await</span>
+          <span className="text-accent">await</span>
           <span className="text-foreground"> Rhinogent.</span>
-          <span className="text-gold">mint</span>
+          <span className="text-accent">mint</span>
           <span className="text-foreground">();</span>
           {"\n"}
           <span className="text-foreground">agent.</span>
-          <span className="text-gold">did</span>
+          <span className="text-accent">did</span>
           <span className="text-foreground">; </span>
           <span className="text-muted-2">{`// did:pkh:eip155:8453:0x…`}</span>
           {"\n\n"}
           <span className="text-muted-2">{`// sign anything — proof anyone can verify`}</span>
           {"\n"}
-          <span className="text-cyber">const</span>
+          <span className="text-accent">const</span>
           <span className="text-foreground"> seal = agent.</span>
-          <span className="text-gold">sign</span>
+          <span className="text-accent">sign</span>
           <span className="text-foreground">(order);</span>
           {"\n"}
           <span className="text-foreground">Rhinogent.</span>
-          <span className="text-gold">verify</span>
+          <span className="text-accent">verify</span>
           <span className="text-foreground">(seal); </span>
           <span className="text-emerald">{`// true`}</span>
         </code>
@@ -404,7 +404,7 @@ function Security() {
     <section id="security" className="mx-auto max-w-6xl px-5 py-24">
       <div className="rounded-3xl border border-border bg-gradient-to-b from-surface-2/60 to-surface/30 p-10 sm:p-14">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-widest text-gold">
+          <p className="text-xs uppercase tracking-widest text-accent">
             The trust model
           </p>
           <h2 className="display mt-4 text-3xl font-semibold sm:text-4xl">
@@ -433,7 +433,7 @@ function Security() {
 function Stat({ k, label }: { k: string; label: string }) {
   return (
     <div className="rounded-2xl border border-border bg-background/40 p-6 text-center">
-      <p className="gold-gradient font-mono text-2xl font-semibold">{k}</p>
+      <p className="accent-gradient font-mono text-2xl font-semibold">{k}</p>
       <p className="mt-1 text-sm text-muted">{label}</p>
     </div>
   );
@@ -459,7 +459,7 @@ function CTA() {
         <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Link
             href="/dashboard"
-            className="w-full rounded-full bg-foreground px-7 py-3.5 text-sm font-semibold text-background transition-opacity hover:opacity-90 sm:w-auto"
+            className="w-full rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 sm:w-auto"
           >
             Get Rhinogent
           </Link>
@@ -478,7 +478,7 @@ function CTA() {
 /* ───────────────────────── Visual cards ───────────────────────── */
 function IdentityCard() {
   return (
-    <div className="rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-xl shadow-black/40">
+    <div className="rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-xl shadow-slate-900/10">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-xs uppercase tracking-widest text-muted-2">
@@ -505,12 +505,12 @@ function IdentityCard() {
 
 function WalletCard() {
   return (
-    <div className="rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-xl shadow-black/40">
+    <div className="rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-xl shadow-slate-900/10">
       <p className="text-xs uppercase tracking-widest text-muted-2">
         Wallet · Base
       </p>
       <p className="mt-2 font-mono text-3xl font-semibold">
-        <span className="gold-gradient">42.50</span>{" "}
+        <span className="accent-gradient">42.50</span>{" "}
         <span className="text-sm text-muted">USDC</span>
       </p>
       <div className="mt-6 space-y-2 font-mono text-[13px]">
@@ -543,17 +543,17 @@ function Flow({
 
 function VerifyCard() {
   return (
-    <div className="rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-xl shadow-black/40">
+    <div className="rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-xl shadow-slate-900/10">
       <p className="text-xs uppercase tracking-widest text-muted-2">
         Signature check
       </p>
-      <div className="mt-4 rounded-lg border border-border bg-[#0a0b10] p-4 font-mono text-[12px] leading-relaxed">
+      <div className="mt-4 rounded-lg border border-border bg-surface p-4 font-mono text-[12px] leading-relaxed">
         <p className="text-muted-2">{`{`}</p>
         <p className="pl-3 text-foreground">
           alg: <span className="text-emerald">{`"Ed25519"`}</span>,
         </p>
         <p className="pl-3 text-foreground">
-          signer: <span className="text-gold">{`"0x…4AEF"`}</span>,
+          signer: <span className="text-accent">{`"0x…4AEF"`}</span>,
         </p>
         <p className="pl-3 text-foreground">
           valid: <span className="text-emerald">true</span>
@@ -570,7 +570,7 @@ function VerifyCard() {
 
 function MandateCard() {
   return (
-    <div className="rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-xl shadow-black/40">
+    <div className="rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-6 shadow-xl shadow-slate-900/10">
       <p className="text-xs uppercase tracking-widest text-muted-2">
         Spend mandate
       </p>
@@ -578,10 +578,10 @@ function MandateCard() {
         <Row k="cap / day" v="$5.00" />
         <Row k="per call" v="$0.50" />
         <Row k="allowlist">
-          <span className="text-cyber">3 merchants</span>
+          <span className="text-accent">3 merchants</span>
         </Row>
         <Row k="signed">
-          <span className="text-gold">PERM_v0 ✓</span>
+          <span className="text-accent">PERM_v0 ✓</span>
         </Row>
       </dl>
     </div>

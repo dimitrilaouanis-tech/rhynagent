@@ -165,7 +165,7 @@ function Profile({
           <button
             onClick={handleAdd}
             disabled={full || minting}
-            className="flex items-center gap-2 rounded-full bg-foreground px-5 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+            className="flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
           >
             {minting ? (
               <>
@@ -204,7 +204,7 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
       </p>
       <button
         onClick={onAdd}
-        className="mt-6 rounded-full bg-foreground px-6 py-3 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+        className="mt-6 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
       >
         + Mint your first agent
       </button>
@@ -239,7 +239,7 @@ function Spinner({ className = "" }: { className?: string }) {
 function MintingSlot() {
   return (
     <div className="flex min-h-[200px] flex-col items-center justify-center rounded-2xl border border-border bg-surface/40">
-      <Spinner className="h-7 w-7 text-gold" />
+      <Spinner className="h-7 w-7 text-accent" />
       <p className="mt-4 text-sm font-medium text-foreground">
         Minting identity…
       </p>
@@ -291,7 +291,7 @@ function AgentCard({ agent, onRemove }: { agent: Agent; onRemove: () => void }) 
           <span className="text-muted">0.00 USDC</span>
         </Row>
         <Row k="credential">
-          <span className="rounded bg-gold/15 px-1.5 py-0.5 text-gold">NEW</span>
+          <span className="rounded bg-accent/15 px-1.5 py-0.5 text-accent">NEW</span>
         </Row>
       </dl>
 
