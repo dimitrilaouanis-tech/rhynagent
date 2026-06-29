@@ -1,5 +1,5 @@
 /**
- * Rhinogent — the android rhino.
+ * Rhynagent — the android rhino.
  * Half organic armored hide, half exposed machine. The horn is the gold signet;
  * the eye and jaw circuitry glow cyber-cyan. Facing right.
  */
@@ -19,7 +19,7 @@ export function RhinoMascot({ className }: { className?: string }) {
       fill="none"
       className={className}
       role="img"
-      aria-label="Rhinogent — the android rhino"
+      aria-label="Rhynagent — the android rhino"
     >
       <defs>
         <linearGradient id="hide" x1="0" y1="0" x2="0" y2="1">
@@ -103,7 +103,7 @@ export function RhinoMark({ className }: { className?: string }) {
       fill="none"
       className={className}
       role="img"
-      aria-label="Rhinogent"
+      aria-label="Rhynagent"
     >
       <defs>
         <linearGradient id="hide-m" x1="0" y1="0" x2="0" y2="1">

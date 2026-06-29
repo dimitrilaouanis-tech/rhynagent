@@ -1,7 +1,7 @@
 import { type Agent, generateAgent } from "./identity";
 
 export const MAX_SLOTS = 10;
-const KEY = "rhinogent.agents.v1";
+const KEY = "rhynagent.agents.v1";
 
 export function loadAgents(): Agent[] {
   if (typeof window === "undefined") return [];

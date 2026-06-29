@@ -1,8 +1,8 @@
-# Render Blueprint — Rhinogent static site
+# Render Blueprint — Rhynagent static site
 # New > Blueprint on Render, point at this repo, and it deploys automatically.
 services:
   - type: web
-    name: rhinogent
+    name: rhynagent
     runtime: static
     buildCommand: npm install && npm run build
     staticPublishPath: ./out
