@@ -260,6 +260,27 @@ function AgentCard({ agent, onRemove }: { agent: Agent; onRemove: () => void }) 
     setTimeout(() => setCopied(null), 1200);
   };
 
+  // The one block a user drops into their agent's MCP config → instantly connected.
+  // Key rides as a LOCAL env var (never leaves their config), like any MCP API key.
+  const connectBlock = JSON.stringify(
+    {
+      mcpServers: {
+        rhinogent: {
+          command: "npx",
+          args: ["-y", "github:dimitrilaouanis-tech/rhinogent-mcp"],
+          env: {
+            RHINOGENT_AGENT: agent.id,
+            RHINOGENT_ADDRESS: agent.address,
+            RHINOGENT_DID: `did:pkh:eip155:8453:${agent.address}`,
+            RHINOGENT_KEY: agent.privateKey,
+          },
+        },
+      },
+    },
+    null,
+    2
+  );
+
   return (
     <div className="rounded-2xl border border-border bg-gradient-to-b from-surface-2 to-surface p-5">
       <div className="flex items-start justify-between">
@@ -294,6 +315,24 @@ function AgentCard({ agent, onRemove }: { agent: Agent; onRemove: () => void }) 
           <span className="rounded bg-accent/15 px-1.5 py-0.5 text-accent">NEW</span>
         </Row>
       </dl>
+
+      <div className="mt-5 rounded-xl border border-accent/30 bg-accent/5 p-4">
+        <p className="text-[11px] uppercase tracking-widest text-accent">
+          Connect your agent
+        </p>
+        <p className="mt-1 text-xs text-muted">
+          Copy this, paste it into your AI agent — it&apos;s instantly on the network.
+        </p>
+        <button
+          onClick={() => copy("connect", connectBlock)}
+          className="mt-3 w-full rounded-lg border border-accent bg-accent/10 px-3 py-2.5 text-sm font-semibold text-accent transition-colors hover:bg-accent/20"
+        >
+          {copied === "connect" ? "copied ✓ — paste into your agent" : "Copy connection block"}
+        </button>
+        <p className="mt-2 text-[10px] text-muted-2">
+          Includes your key — it stays in your own config, never shared.
+        </p>
+      </div>
 
       <div className="mt-5 flex items-center gap-2 border-t border-border pt-4">
         <button
