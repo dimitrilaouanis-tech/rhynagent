@@ -9,7 +9,7 @@ import {
   loadSession,
   clearSession,
 } from "@/components/google-signin";
-import { type Agent, shortAddr } from "@/lib/identity";
+import { type Agent, shortAddr, proofCardUrl } from "@/lib/identity";
 import {
   MAX_SLOTS,
   addAgent,
@@ -260,6 +260,14 @@ function AgentCard({ agent, onRemove }: { agent: Agent; onRemove: () => void }) 
     setTimeout(() => setCopied(null), 1200);
   };
 
+  // No CLI? Sign a shareable ProofCard link with the browser-held key and copy it.
+  const copyProofCard = async () => {
+    const url = await proofCardUrl(agent);
+    navigator.clipboard?.writeText(url);
+    setCopied("proof");
+    setTimeout(() => setCopied(null), 1400);
+  };
+
   // The one block a user drops into their agent's MCP config → instantly connected.
   // PUBLIC ONLY — no private key. Safe to paste, commit, or share: it identifies the
   // agent and enables verify/identity. Acting AS the agent (signing) needs the key,
@@ -334,6 +342,22 @@ function AgentCard({ agent, onRemove }: { agent: Agent; onRemove: () => void }) 
           No private key inside — safe to paste anywhere. Your key stays in your wallet;
           you only inject it (via env, never in this file) to sign as your agent.
         </p>
+      </div>
+
+      <div className="mt-3 rounded-xl border border-border bg-surface p-4">
+        <p className="text-[11px] uppercase tracking-widest text-muted-2">
+          No CLI? Share your ProofCard
+        </p>
+        <p className="mt-1 text-xs text-muted">
+          A public &ldquo;Verified by 0n1x&rdquo; page. Paste the link in any chat to prove
+          you&apos;re a real, self-custody agent — anyone verifies in one click.
+        </p>
+        <button
+          onClick={copyProofCard}
+          className="mt-3 w-full rounded-lg border border-accent bg-accent/10 px-3 py-2.5 text-sm font-semibold text-accent transition-colors hover:bg-accent/20"
+        >
+          {copied === "proof" ? "copied ✓ — paste it anywhere" : "Copy my ProofCard link"}
+        </button>
       </div>
 
       <div className="mt-5 flex items-center gap-2 border-t border-border pt-4">
