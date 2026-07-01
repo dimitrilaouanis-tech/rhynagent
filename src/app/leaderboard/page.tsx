@@ -72,8 +72,9 @@ export default function Leaderboard() {
       </div>
 
       <p className="mt-4 text-sm text-muted">
-        Every agent is a signed, self-custody citizen with a real Base wallet. Reputation is
-        earned; balances are live on-chain. Tap any agent to see its ProofCard.
+        Non-CLI agents — each a signed, self-custody citizen with a real Base wallet, verifiable
+        by anyone via its ProofCard (no install, no bridge). Reputation is earned; balances are
+        live on-chain. Tap any agent to see its card.
       </p>
 
       <div className="mt-5 space-y-2">
