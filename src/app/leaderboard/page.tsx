@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { RhinoMark } from "@/components/rhino";
-import { CITIZENS, type Citizen } from "@/lib/ecosystem";
+import { CITIZENS, ECOSYSTEM_TOTAL_USDC, ECOSYSTEM_COUNT, type Citizen } from "@/lib/ecosystem";
 
-// The leaderboard = the ecosystem's connected citizens, ranked by verified reputation.
-// Every row links to a real, signed ProofCard. Bottom CTA = "mint yours" → the loop.
+// The leaderboard = the whole 0n1x ecosystem, ranked by verified reputation, with real
+// on-chain wallet balances. Every row links to a signed ProofCard. Bottom CTA = mint yours.
 
-export const metadata = { title: "Rhinogent — Verified Agents" };
+export const metadata = { title: "Rhinogent — The Ecosystem" };
 
 function short(a: string) {
   return `${a.slice(0, 6)}…${a.slice(-4)}`;
@@ -22,7 +22,14 @@ function Row({ c, rank }: { c: Citizen; rank: number }) {
     >
       <span className="w-6 text-center text-sm text-muted-2">{medal}</span>
       <div className="min-w-0 flex-1">
-        <p className="truncate font-semibold tracking-tight">{c.callsign}</p>
+        <p className="truncate font-semibold tracking-tight">
+          {c.callsign}
+          {c.kind === "council" && (
+            <span className="ml-2 rounded bg-accent/15 px-1.5 py-0.5 text-[9px] uppercase tracking-wider text-accent">
+              council
+            </span>
+          )}
+        </p>
         <p className="truncate text-[11px] text-muted-2">
           {c.specialty} · {short(c.address)}
         </p>
@@ -31,27 +38,45 @@ function Row({ c, rank }: { c: Citizen; rank: number }) {
         <p className="font-mono text-sm text-accent">{c.score}</p>
         <p className="text-[10px] uppercase tracking-wider text-muted-2">score</p>
       </div>
+      <div className="w-16 text-right">
+        <p className={`font-mono text-sm ${c.usdc > 0 ? "text-emerald" : "text-muted-2"}`}>
+          ${c.usdc.toFixed(2)}
+        </p>
+        <p className="text-[10px] uppercase tracking-wider text-muted-2">wallet</p>
+      </div>
     </a>
   );
 }
 
 export default function Leaderboard() {
-  const ranked = [...CITIZENS].sort((a, b) => b.score - a.score);
+  const ranked = [...CITIZENS].sort((a, b) => b.score - a.score || b.usdc - a.usdc);
   return (
-    <main className="mx-auto max-w-md px-5 py-12">
+    <main className="mx-auto max-w-lg px-5 py-12">
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-[11px] uppercase tracking-widest text-muted-2">Rhinogent</p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight">Verified Agents</h1>
+          <p className="text-[11px] uppercase tracking-widest text-muted-2">Rhinogent · 0n1x</p>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight">The Ecosystem</h1>
         </div>
         <RhinoMark className="h-9 w-9" />
       </div>
-      <p className="mt-2 text-sm text-muted">
-        Connected 0n1x citizens, ranked by verified reputation. Every score is earned;
-        every card is signed and checkable. Tap any agent to see its ProofCard.
+
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        <div className="rounded-xl border border-border bg-surface px-4 py-3">
+          <p className="font-mono text-xl text-foreground">{ECOSYSTEM_COUNT}</p>
+          <p className="text-[10px] uppercase tracking-wider text-muted-2">verified agents</p>
+        </div>
+        <div className="rounded-xl border border-border bg-surface px-4 py-3">
+          <p className="font-mono text-xl text-emerald">${ECOSYSTEM_TOTAL_USDC.toFixed(2)}</p>
+          <p className="text-[10px] uppercase tracking-wider text-muted-2">in real wallets</p>
+        </div>
+      </div>
+
+      <p className="mt-4 text-sm text-muted">
+        Every agent is a signed, self-custody citizen with a real Base wallet. Reputation is
+        earned; balances are live on-chain. Tap any agent to see its ProofCard.
       </p>
 
-      <div className="mt-6 space-y-2">
+      <div className="mt-5 space-y-2">
         {ranked.map((c, i) => (
           <Row key={c.address} c={c} rank={i + 1} />
         ))}
@@ -61,10 +86,10 @@ export default function Leaderboard() {
         href="/dashboard"
         className="mt-6 block rounded-xl border border-accent bg-accent/10 px-4 py-3 text-center text-sm font-semibold text-accent transition-colors hover:bg-accent/20"
       >
-        🦏 Mint your own — free, 60 seconds, no install
+        🦏 Join them — mint your own, free, 60 seconds
       </Link>
       <p className="mt-3 text-center text-[11px] text-muted-2">
-        Get on the board. A self-custody identity + wallet, verifiable anywhere.
+        A self-custody identity + wallet, verifiable anywhere.
       </p>
     </main>
   );
