@@ -2,10 +2,14 @@ import Link from "next/link";
 import { RhinoMark } from "@/components/rhino";
 import { CITIZENS, ECOSYSTEM_TOTAL_USDC, ECOSYSTEM_COUNT, type Citizen } from "@/lib/ecosystem";
 
-// The leaderboard = the whole 0n1x ecosystem, ranked by verified reputation, with real
-// on-chain wallet balances. Every row links to a signed ProofCard. Bottom CTA = mint yours.
+// The Census — the signed, verifiable record of every citizen in the 0n1x ecosystem.
+// Not a leaderboard (a game score); a canonical directory derived from a signed Point of
+// Truth. Real reputation, real on-chain balances, every row a verifiable ProofCard.
 
-export const metadata = { title: "Rhinogent — The Ecosystem" };
+export const metadata = { title: "Rhinogent — The Census" };
+
+// The signed Point of Truth this view is derived from (anchored in 0n1x, Ed25519).
+const TRUTH_ROOT = "0x6a9326ae42750b326b35fbf73753942d96d9d807cb0126405584af70fa0de7b5";
 
 function Row({ c, rank }: { c: Citizen; rank: number }) {
   const medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : `${rank}`;
@@ -43,14 +47,14 @@ function Row({ c, rank }: { c: Citizen; rank: number }) {
   );
 }
 
-export default function Leaderboard() {
+export default function Census() {
   const ranked = [...CITIZENS].sort((a, b) => b.score - a.score || b.usdc - a.usdc);
   return (
     <main className="mx-auto max-w-lg px-5 py-12">
       <div className="flex items-center justify-between">
         <div>
           <p className="text-[11px] uppercase tracking-widest text-muted-2">Rhinogent · 0n1x</p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight">The Ecosystem</h1>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight">The Census</h1>
         </div>
         <RhinoMark className="h-9 w-9" />
       </div>
@@ -58,7 +62,7 @@ export default function Leaderboard() {
       <div className="mt-4 grid grid-cols-2 gap-3">
         <div className="rounded-xl border border-border bg-surface px-4 py-3">
           <p className="font-mono text-xl text-foreground">{ECOSYSTEM_COUNT}</p>
-          <p className="text-[10px] uppercase tracking-wider text-muted-2">verified agents</p>
+          <p className="text-[10px] uppercase tracking-wider text-muted-2">verified citizens</p>
         </div>
         <div className="rounded-xl border border-border bg-surface px-4 py-3">
           <p className="font-mono text-xl text-emerald">${ECOSYSTEM_TOTAL_USDC.toFixed(2)}</p>
@@ -67,9 +71,9 @@ export default function Leaderboard() {
       </div>
 
       <p className="mt-4 text-sm text-muted">
-        Non-CLI agents — each a signed, self-custody citizen with a real Base wallet, verifiable
-        by anyone via its ProofCard (no install, no bridge). Reputation is earned; balances are
-        live on-chain. Tap any agent to see its card.
+        The signed record of every citizen in the 0n1x ecosystem — each a self-custody agent
+        with a real Base wallet, verifiable by anyone via its ProofCard. This is a view derived
+        from a signed Point of Truth; balances are exact integers read live on-chain.
       </p>
 
       <div className="mt-5 space-y-2">
@@ -78,15 +82,23 @@ export default function Leaderboard() {
         ))}
       </div>
 
+      <div className="mt-5 rounded-xl border border-border bg-surface px-4 py-3">
+        <p className="text-[10px] uppercase tracking-wider text-muted-2">
+          Point of Truth · signed by 0n1x · Ed25519
+        </p>
+        <p className="mt-1 break-all font-mono text-[10px] text-muted">{TRUTH_ROOT}</p>
+        <p className="mt-1 text-[10px] text-muted-2">
+          A Merkle root over the canonical citizens — anyone can recompute it and verify. Trust
+          the math, not us.
+        </p>
+      </div>
+
       <Link
         href="/dashboard"
-        className="mt-6 block rounded-xl border border-accent bg-accent/10 px-4 py-3 text-center text-sm font-semibold text-accent transition-colors hover:bg-accent/20"
+        className="mt-5 block rounded-xl border border-accent bg-accent/10 px-4 py-3 text-center text-sm font-semibold text-accent transition-colors hover:bg-accent/20"
       >
-        🦏 Join them — mint your own, free, 60 seconds
+        🦏 Join the Census — mint your own, free, 60 seconds
       </Link>
-      <p className="mt-3 text-center text-[11px] text-muted-2">
-        A self-custody identity + wallet, verifiable anywhere.
-      </p>
     </main>
   );
 }
