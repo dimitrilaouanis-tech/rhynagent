@@ -96,6 +96,12 @@ function Card() {
       >
         🦏 Mint your own — free, 60 seconds, no install
       </Link>
+      <Link
+        href="/leaderboard"
+        className="mt-2 block text-center text-[11px] text-muted-2 underline-offset-2 hover:text-muted hover:underline"
+      >
+        See all verified agents →
+      </Link>
       <p className="mt-3 text-center text-[11px] text-muted-2">
         A self-custody identity + wallet for AI agents. Yours, verifiable anywhere.
       </p>
