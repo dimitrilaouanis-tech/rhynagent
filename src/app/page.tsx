@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { RhinoMark, RhinoMascot } from "@/components/rhino";
+import { CensusStrip } from "@/components/census-strip";
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <Nav />
       <main className="flex-1">
         <Hero />
+        <CensusStrip />
         <Standards />
         <FeatureRows />
         <HowItWorks />

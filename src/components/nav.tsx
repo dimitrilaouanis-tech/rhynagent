@@ -2,10 +2,10 @@ import Link from "next/link";
 import { RhinoMark } from "./rhino";
 
 const links = [
+  { href: "/census", label: "Census" },
   { href: "#features", label: "Features" },
   { href: "#developers", label: "Developers" },
   { href: "#security", label: "Security" },
-  { href: "#docs", label: "Docs" },
 ];
 
 export function Nav() {
