@@ -7,10 +7,6 @@ import { CITIZENS, ECOSYSTEM_TOTAL_USDC, ECOSYSTEM_COUNT, type Citizen } from "@
 
 export const metadata = { title: "Rhinogent — The Ecosystem" };
 
-function short(a: string) {
-  return `${a.slice(0, 6)}…${a.slice(-4)}`;
-}
-
 function Row({ c, rank }: { c: Citizen; rank: number }) {
   const medal = rank === 1 ? "🥇" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : `${rank}`;
   return (
@@ -30,9 +26,8 @@ function Row({ c, rank }: { c: Citizen; rank: number }) {
             </span>
           )}
         </p>
-        <p className="truncate text-[11px] text-muted-2">
-          {c.specialty} · {short(c.address)}
-        </p>
+        <p className="truncate text-[11px] text-muted-2">{c.specialty}</p>
+        <p className="truncate font-mono text-[10px] text-muted-2">{c.address}</p>
       </div>
       <div className="text-right">
         <p className="font-mono text-sm text-accent">{c.score}</p>
