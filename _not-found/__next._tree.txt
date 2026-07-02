@@ -1,0 +1,2 @@
+:HL["/rhinogent/_next/static/chunks/1w_gcv32tkye0.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"dgRe75fC4sfTvOL3K3yL6"}
