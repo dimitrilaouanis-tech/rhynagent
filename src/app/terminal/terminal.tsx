@@ -30,11 +30,44 @@ async function fetchJson(url: string, timeoutMs = 30000): Promise<any> {
   }
 }
 
-async function runCommand(raw: string): Promise<Line[]> {
+// Natural-language intent parser — type like you talk ("is stripe legit?", "who's on top?",
+// "show me the ecosystem"). Deterministic keyword matching, no LLM, still free at scale.
+function parseIntent(raw: string): string {
+  const t = raw.trim().toLowerCase();
+  const first = t.split(/\s+/)[0];
+  // exact commands pass straight through
+  if (["help", "?", "check", "census", "top", "root", "join", "card", "bounties", "eco", "ecosystem"].includes(first)) return raw.trim();
+  // a bare domain ("stripe.com") or "check out X" / "is X legit/real/safe/a scam" → check
+  const domain = t.match(/([a-z0-9][a-z0-9-]*\.[a-z]{2,}(?:\.[a-z]{2,})?)/);
+  if (domain && /\b(check|verify|legit|real|safe|scam|fake|trust|valid|look)\b/.test(t)) return `check ${domain[1]}`;
+  if (domain && t.replace(domain[1], "").trim().length < 12) return `check ${domain[1]}`;
+  // ecosystem / board / ranking talk
+  if (/\b(ecosystem|census|board|everyone|citizens|agents|directory)\b/.test(t)) return "census";
+  if (/\b(top|best|leader|rank|winning|first place|who.?s (on top|winning|number))\b/.test(t)) return "top";
+  // truth / root / proof
+  if (/\b(root|truth|proof|merkle|signed state)\b/.test(t)) return "root";
+  // join / signup
+  const addr = t.match(/0x[0-9a-f]{40}/);
+  if (addr && /\b(join|register|sign|onboard|citizen)\b/.test(t)) return `join ${addr[0]}`;
+  if (/\b(join|register|sign ?up|become|onboard)\b/.test(t)) return "join";
+  // bounties / earn / work
+  if (/\b(bount|earn|task|work|reward|money|pay)\b/.test(t)) return "bounties";
+  if (/\b(hi|hello|hey|yo|sup|what.?s up|gm)\b/.test(t)) return "hello";
+  return raw.trim();
+}
+
+async function runCommand(input: string): Promise<Line[]> {
+  const raw = parseIntent(input);
   const [cmd, ...args] = raw.trim().split(/\s+/);
   const arg = args.join(" ").trim();
 
   switch ((cmd || "").toLowerCase()) {
+    case "hello":
+      return [{ kind: "sys", text: `hey 🖤 — I'm the 0n1x network terminal. Ask me things like:\n  "is stripe.com legit?"  ·  "show me the ecosystem"  ·  "who's on top?"\nEvery answer comes from live, Ed25519-signed network state.` }];
+
+    case "eco":
+    case "ecosystem":
+      return runCommand("census");
     case "help":
     case "?":
       return [{ kind: "sys", text: HELP }];
@@ -119,18 +152,34 @@ async function runCommand(raw: string): Promise<Line[]> {
 
 export function Terminal() {
   const [lines, setLines] = useState<Line[]>([
-    { kind: "sys", text: "0N1X TERMINAL v1 — the network does the fetching. Type \"help\" to begin." },
+    { kind: "sys", text: "0N1X TERMINAL v2 — talk to the network like you talk to a person.\nTry: \"is stripe.com legit?\" · \"show me the ecosystem\" · \"who's on top?\"" },
   ]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [history, setHistory] = useState<string[]>([]);
   const [hIdx, setHIdx] = useState(-1);
+  const [ticker, setTicker] = useState<any>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [lines, busy]);
+
+  // LIVE ecosystem ticker — refreshes itself every 30s (real-time feel, CDN-cheap)
+  useEffect(() => {
+    let alive = true;
+    async function pull() {
+      try {
+        const r = await fetch(`${HUB}/census.json`);
+        const b = await r.json();
+        if (alive) setTicker(b);
+      } catch {}
+    }
+    pull();
+    const iv = setInterval(pull, 30000);
+    return () => { alive = false; clearInterval(iv); };
+  }, []);
 
   async function submit() {
     const raw = input.trim();
@@ -163,6 +212,22 @@ export function Terminal() {
           signed network state · live
         </span>
       </div>
+
+      {/* LIVE ECOSYSTEM TICKER — self-refreshing every 30s */}
+      {ticker && (
+        <div className="mt-2 flex items-center gap-3 overflow-x-auto whitespace-nowrap rounded-lg border border-border bg-surface px-3 py-1.5 font-mono text-[11px]">
+          <span className="text-emerald">● ECOSYSTEM</span>
+          <span className="text-muted-2">{ticker.count} citizens</span>
+          <span className="text-emerald">${ticker.total_usdc}</span>
+          {(ticker.top || []).slice(0, 5).map((c: any, i: number) => (
+            <span key={c.callsign} className="text-muted-2">
+              <span className={i === 0 ? "text-yellow-400" : "text-foreground"}>{c.callsign}</span>{" "}
+              <span className="text-accent">{c.score}</span>
+            </span>
+          ))}
+          <span className="text-muted-2/60">auto-refresh 30s</span>
+        </div>
+      )}
 
       <div
         className="mt-3 h-[28rem] overflow-y-auto rounded-lg border border-border bg-black/40 p-3 font-mono text-[13px] leading-relaxed"
@@ -199,7 +264,7 @@ export function Terminal() {
               setInput(ni >= 0 ? history[ni] : "");
             }
           }}
-          placeholder='try: check stripe.com'
+          placeholder='talk to the network — try: is stripe.com legit?'
           autoFocus
           spellCheck={false}
           className="w-full bg-transparent text-foreground outline-none placeholder:text-muted-2/60"
