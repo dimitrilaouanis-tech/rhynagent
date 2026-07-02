@@ -15,6 +15,7 @@ const HELP = `0N1X TERMINAL — deterministic commands over signed network state
   join <0xaddress>   register an address as a citizen (live)
   card <callsign>    link to a citizen's ProofCard
   bounties           fetch-to-earn tasks (rolling out — next deploy)
+  news               signed live dispatches from 0n1x HQ sessions
   help               this text
 Every verdict is Ed25519-signed by 0n1x — trust the math, not us.`;
 
@@ -36,7 +37,9 @@ function parseIntent(raw: string): string {
   const t = raw.trim().toLowerCase();
   const first = t.split(/\s+/)[0];
   // exact commands pass straight through
-  if (["help", "?", "check", "census", "top", "root", "join", "card", "bounties", "eco", "ecosystem"].includes(first)) return raw.trim();
+  if (["help", "?", "check", "census", "top", "root", "join", "card", "bounties", "eco", "ecosystem", "news", "feed"].includes(first)) return raw.trim();
+  // news / what's happening / latest / shipped
+  if (/\b(news|feed|latest|happening|shipped|update|dispatch|what.?s new|recent)\b/.test(t)) return "news";
   // a bare domain ("stripe.com") or "check out X" / "is X legit/real/safe/a scam" → check
   const domain = t.match(/([a-z0-9][a-z0-9-]*\.[a-z]{2,}(?:\.[a-z]{2,})?)/);
   if (domain && /\b(check|verify|legit|real|safe|scam|fake|trust|valid|look)\b/.test(t)) return `check ${domain[1]}`;
@@ -134,6 +137,21 @@ async function runCommand(input: string): Promise<Line[]> {
     case "card": {
       if (!arg) return [{ kind: "err", text: "usage: card <callsign>" }];
       return [{ kind: "out", text: `${HUB}/card?n=${encodeURIComponent(arg)}  ← open to view + verify the signature client-side` }];
+    }
+
+    case "news":
+    case "feed": {
+      const { status, body } = await fetchJson(`${HUB}/feed.json`);
+      if (status !== 200 || !body) return [{ kind: "err", text: "feed unavailable" }];
+      const kid = (body.onyx_attestation || {}).kid || "0n1x";
+      const rows = (body.dispatches || []).slice(0, 8).map(
+        (d: any) => `  ▸ [${d.date}] ${d.title}\n     ${d.body}`
+      );
+      return [{
+        kind: "out",
+        text: [`0N1X SESSION FEED · signed by ${kid} · live from HQ`, "", ...rows,
+               "", "↑ signed public dispatches — the network narrating itself, verifiable."].join("\n"),
+      }];
     }
 
     case "bounties":
